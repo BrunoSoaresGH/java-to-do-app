@@ -2,7 +2,9 @@ package com.bs.todoapp.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.ResultSet;
 
 /**
  *
@@ -34,4 +36,36 @@ public class ConnectionFactory {
         }
     }
     
+    public static void closeConnection(Connection con, PreparedStatement statement) {
+        try {
+            if(con != null){
+                con.close();
+            }
+            
+            if(statement != null) {
+                statement.close();
+            }
+        } catch (SQLException ex) {
+            throw new RuntimeException("Error at closing DB connection");
+        }
+    }
+    
+    public static void closeConnection(Connection con, PreparedStatement statement, ResultSet result) {
+        try {
+            if(con != null){
+                con.close();
+            }
+            
+            if(statement != null) {
+                statement.close();
+            }
+            
+            if(result != null){
+                result.close();
+            }
+        } catch (SQLException ex) {
+            throw new RuntimeException("Error at closing DB connection");
+        }
+    }
+   
 }
