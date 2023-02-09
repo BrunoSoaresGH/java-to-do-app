@@ -80,6 +80,7 @@ public class TaskController {
             statement.setDate(6, new Date(task.getDeadline().getTime()));
             statement.setDate(7, new Date(task.getCreatedAt().getTime()));
             statement.setDate(8, new Date(task.getUpdatedAt().getTime()));
+            statement.setInt(9, task.getId());
             statement.execute();
         } catch(Exception e){
             throw new RuntimeException("Error updating task!");
@@ -137,11 +138,10 @@ public class TaskController {
                 tasks.add(task);
             }
         } catch (Exception e) {
-            throw new RuntimeException("Error deleting task!");
+            throw new RuntimeException("Error getting all tasks!");
         } finally {
             ConnectionFactory.closeConnection(c, statement, result);
-        }
-        
+        }      
         return tasks;
     }
     

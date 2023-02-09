@@ -21,6 +21,8 @@ public class Project {
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
+    
+    public Project(){}
 
     public int getId() {
         return id;
